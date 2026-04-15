@@ -46,6 +46,7 @@
     "card_color_scheme": "scheme-2",
     "card_swatch_display": "variant_image",
     "card_swatch_size": 30,
+    "card_swatch_limit": 6,
     "card_border_thickness": 0,
     "card_border_opacity": 10,
     "card_corner_radius": 0,
