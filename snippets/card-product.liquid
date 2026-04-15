@@ -276,17 +276,32 @@
                   {%- liquid
                     assign option_value_name = value | append: ''
                     assign card_swatch_variant = blank
+                    assign card_swatch_variant_for_url = blank
                     assign option_position_index = card_swatch_option.position | minus: 1
                     for variant in card_product.variants
+                      if card_swatch_variant_for_url == blank and variant.options[option_position_index] == option_value_name
+                        assign card_swatch_variant_for_url = variant
+                      endif
                       if variant.options[option_position_index] == option_value_name and variant.featured_media
                         assign card_swatch_variant = variant
-                        break
+                        if card_swatch_variant_for_url != blank
+                          break
+                        endif
                       endif
                     endfor
+
+                    assign card_swatch_url = value.product_url | default: card_product.url
+                    if card_swatch_variant_for_url != blank
+                      if card_swatch_url contains '?'
+                        assign card_swatch_url = card_swatch_url | append: '&variant=' | append: card_swatch_variant_for_url.id
+                      else
+                        assign card_swatch_url = card_swatch_url | append: '?variant=' | append: card_swatch_variant_for_url.id
+                      endif
+                    endif
                   -%}
                   <li class="card__swatch-item">
                     <a
-                      href="{{ value.product_url | default: card_product.url }}"
+                      href="{{ card_swatch_url }}"
                       class="card__swatch-link{% if card_swatch_variant != blank %} card__swatch-link--has-image{% endif %}"
                       title="{{ value | escape }}"
                       aria-label="{{ value | escape }}"
@@ -334,8 +349,28 @@
                 style="--card-size-chip-size: {{ settings.card_size_chip_size | default: 28 }}px;"
               >
                 {%- for value in card_size_option.values limit: card_size_limit -%}
+                  {%- liquid
+                    assign size_option_value_name = value | append: ''
+                    assign card_size_variant = blank
+                    assign size_option_position_index = card_size_option.position | minus: 1
+                    for variant in card_product.variants
+                      if variant.options[size_option_position_index] == size_option_value_name
+                        assign card_size_variant = variant
+                        break
+                      endif
+                    endfor
+
+                    assign card_size_url = card_product.url
+                    if card_size_variant != blank
+                      if card_size_url contains '?'
+                        assign card_size_url = card_size_url | append: '&variant=' | append: card_size_variant.id
+                      else
+                        assign card_size_url = card_size_url | append: '?variant=' | append: card_size_variant.id
+                      endif
+                    endif
+                  -%}
                   <li class="card__size-item">
-                    <span class="card__size-chip">{{ value | escape }}</span>
+                    <a href="{{ card_size_url }}" class="card__size-chip">{{ value | escape }}</a>
                   </li>
                 {%- endfor -%}
                 {%- if card_size_option.values.size > card_size_limit -%}
