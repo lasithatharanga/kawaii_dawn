@@ -27,30 +27,71 @@
     data-section-id="{{ section.id }}"
     data-product-id="{{ product.id }}"
   >
-    {% if recommendations.performed and recommendations.products_count > 0 %}
-      <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
-        {{ section.settings.heading }}
-      </h2>
-      <ul
-        class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
-        role="list"
-      >
-        {% assign skip_card_product_styles = false %}
-        {% for recommendation in recommendations.products %}
-          <li class="grid__item">
-            {% render 'card-product',
-              card_product: recommendation,
-              media_aspect_ratio: section.settings.image_ratio,
-              image_shape: section.settings.image_shape,
-              show_secondary_image: section.settings.show_secondary_image,
-              show_vendor: section.settings.show_vendor,
-              show_rating: section.settings.show_rating,
-              skip_styles: skip_card_product_styles
-            %}
-          </li>
-          {%- assign skip_card_product_styles = true -%}
-        {% endfor %}
-      </ul>
+    {% if recommendations.performed %}
+      {% liquid
+        assign fallback_collection = section.settings.fallback_collection
+        if fallback_collection == blank and product.collections.size > 0
+          assign fallback_collection = product.collections.first
+        endif
+      %}
+
+      {% if recommendations.products_count > 0 %}
+        <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.heading }}
+        </h2>
+        <ul
+          class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+          role="list"
+        >
+          {% assign skip_card_product_styles = false %}
+          {% for recommendation in recommendations.products %}
+            <li class="grid__item">
+              {% render 'card-product',
+                card_product: recommendation,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                skip_styles: skip_card_product_styles
+              %}
+            </li>
+            {%- assign skip_card_product_styles = true -%}
+          {% endfor %}
+        </ul>
+      {% elsif section.settings.enable_fallback_products and fallback_collection != blank %}
+        <h2 class="related-products__heading inline-richtext {{ section.settings.heading_size }}">
+          {{ section.settings.heading }}
+        </h2>
+        <ul
+          class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+          role="list"
+        >
+          {% assign fallback_products_shown = 0 %}
+          {% assign skip_card_product_styles = false %}
+          {% for fallback_product in fallback_collection.products %}
+            {% if fallback_product.id == product.id %}
+              {% continue %}
+            {% endif %}
+            <li class="grid__item">
+              {% render 'card-product',
+                card_product: fallback_product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                skip_styles: skip_card_product_styles
+              %}
+            </li>
+            {% assign fallback_products_shown = fallback_products_shown | plus: 1 %}
+            {% assign skip_card_product_styles = true %}
+            {% if fallback_products_shown >= section.settings.products_to_show %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
     {% endif %}
   </product-recommendations>
   {% if section.settings.image_shape == 'arch' %}
@@ -110,6 +151,18 @@
       "step": 1,
       "default": 4,
       "label": "t:sections.related-products.settings.products_to_show.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_fallback_products",
+      "default": true,
+      "label": "Enable fallback products"
+    },
+    {
+      "type": "collection",
+      "id": "fallback_collection",
+      "label": "Fallback collection",
+      "info": "Used when no recommendations are returned. If left empty, the product's first collection is used."
     },
     {
       "type": "range",
