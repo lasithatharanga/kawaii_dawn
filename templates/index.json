@@ -31,14 +31,14 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
+            "heading": "KawaiiFuku（かわいいふく）",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p>超かわいいアニメガールTシャツ専門。パステルキャンディポップ、桜、宇宙など原宿テイスト満載のkawaiiアパレル。</p>"
           }
         }
       },
