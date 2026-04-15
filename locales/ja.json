@@ -373,6 +373,13 @@
       "min_error": "このアイテムの最小値は{{ min }}です",
       "max_error": "このアイテムの最大値は{{ max }}です",
       "step_error": "このアイテムは、{{ step }}の増分でのみ追加できます"
+    },
+    "related-products": {
+      "settings": {
+        "paragraph__1": {
+          "default": "おすすめ商品"
+        }
+      }
     }
   },
   "localization": {
