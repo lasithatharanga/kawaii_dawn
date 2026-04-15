@@ -44,6 +44,8 @@
     assign card_swatch_option = blank
     assign card_swatch_display_mode = settings.card_swatch_display | default: 'swatch'
     assign color_named_option = blank
+    assign configured_option_names = settings.card_variant_option_names | default: 'Color,Colour,色,カラー' | downcase
+    assign configured_option_names = configured_option_names | split: ','
 
     if card_swatch_display_mode != 'none'
       for option in card_product.options_with_values
@@ -56,9 +58,13 @@
         endfor
 
         assign option_name_downcase = option.name | downcase
-        if option_name_downcase contains 'color' or option_name_downcase contains 'colour'
-          assign color_named_option = option
-        endif
+        for configured_name in configured_option_names
+          assign configured_name = configured_name | strip
+          if configured_name != blank and option_name_downcase == configured_name
+            assign color_named_option = option
+            break
+          endif
+        endfor
 
         if option_has_swatch and card_swatch_option == blank
           assign card_swatch_option = option
@@ -67,6 +73,8 @@
 
       if card_swatch_display_mode == 'variant_image' and color_named_option != blank
         assign card_swatch_option = color_named_option
+      elsif card_swatch_display_mode == 'variant_image' and card_swatch_option == blank and card_product.options_with_values.size > 0
+        assign card_swatch_option = card_product.options_with_values.first
       endif
     endif
   -%}
@@ -244,11 +252,12 @@
               >
                 {%- for value in card_swatch_option.values limit: 5 -%}
                   {%- liquid
+                    assign option_value_name = value | append: ''
                     assign card_swatch_variant = blank
                     if card_swatch_display_mode == 'variant_image'
                       assign option_position_index = card_swatch_option.position | minus: 1
                       for variant in card_product.variants
-                        if variant.options[option_position_index] == value and variant.featured_media
+                        if variant.options[option_position_index] == option_value_name and variant.featured_media
                           assign card_swatch_variant = variant
                           break
                         endif
