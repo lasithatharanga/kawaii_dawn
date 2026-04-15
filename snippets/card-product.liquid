@@ -47,6 +47,11 @@
     assign card_swatch_limit = settings.card_swatch_limit | default: 5 | plus: 0
     assign configured_option_names = settings.card_variant_option_names | default: 'Color,Colour,色,カラー' | downcase
     assign configured_option_names = configured_option_names | split: ','
+    assign card_size_option = blank
+    assign card_show_size_options = settings.card_show_size_options
+    assign card_size_limit = settings.card_size_limit | default: 5 | plus: 0
+    assign configured_size_option_names = settings.card_size_option_names | default: 'Size,サイズ' | downcase
+    assign configured_size_option_names = configured_size_option_names | split: ','
 
     if card_swatch_display_mode != 'none'
       for option in card_product.options_with_values
@@ -77,6 +82,22 @@
       elsif card_swatch_display_mode == 'variant_image' and card_swatch_option == blank and card_product.options_with_values.size > 0
         assign card_swatch_option = card_product.options_with_values.first
       endif
+    endif
+
+    if card_show_size_options
+      for option in card_product.options_with_values
+        assign option_name_downcase = option.name | downcase
+        for configured_size_name in configured_size_option_names
+          assign configured_size_name = configured_size_name | strip
+          if configured_size_name != blank and option_name_downcase == configured_size_name
+            assign card_size_option = option
+            break
+          endif
+        endfor
+        if card_size_option != blank
+          break
+        endif
+      endfor
     endif
   -%}
   <div class="card-wrapper product-card-wrapper underline-links-hover">
@@ -301,6 +322,25 @@
                 {%- if card_swatch_option.values.size > card_swatch_limit -%}
                   <li class="card__swatch-more caption">
                     +{{ card_swatch_option.values.size | minus: card_swatch_limit }}
+                  </li>
+                {%- endif -%}
+              </ul>
+            {%- endif -%}
+            {%- if card_size_option != blank and card_size_option.values.size > 0 -%}
+              <ul
+                class="card__sizes list-unstyled"
+                role="list"
+                aria-label="{{ card_size_option.name | escape }}"
+                style="--card-size-chip-size: {{ settings.card_size_chip_size | default: 28 }}px;"
+              >
+                {%- for value in card_size_option.values limit: card_size_limit -%}
+                  <li class="card__size-item">
+                    <span class="card__size-chip">{{ value | escape }}</span>
+                  </li>
+                {%- endfor -%}
+                {%- if card_size_option.values.size > card_size_limit -%}
+                  <li class="card__size-more caption">
+                    +{{ card_size_option.values.size | minus: card_size_limit }}
                   </li>
                 {%- endif -%}
               </ul>

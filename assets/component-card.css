@@ -511,6 +511,32 @@
   margin-left: 0.2rem;
 }
 
+.card__sizes {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.card__size-chip {
+  align-items: center;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.25);
+  border-radius: 0.2rem;
+  display: inline-flex;
+  font-size: 1.1rem;
+  height: var(--card-size-chip-size, 2.8rem);
+  justify-content: center;
+  line-height: 1;
+  min-width: var(--card-size-chip-size, 2.8rem);
+  padding: 0 0.6rem;
+}
+
+.card__size-more {
+  color: rgba(var(--color-foreground), 0.75);
+  margin-left: 0.2rem;
+}
+
 .card-information > .price {
   color: rgb(var(--color-foreground));
 }
