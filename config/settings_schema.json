@@ -541,6 +541,40 @@
       },
       {
         "type": "header",
+        "content": "Product variant thumbnails"
+      },
+      {
+        "type": "select",
+        "id": "card_swatch_display",
+        "label": "Variant display style",
+        "default": "swatch",
+        "options": [
+          {
+            "value": "none",
+            "label": "Hide"
+          },
+          {
+            "value": "swatch",
+            "label": "Color swatch"
+          },
+          {
+            "value": "variant_image",
+            "label": "Variant image thumbnail"
+          }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "card_swatch_size",
+        "min": 14,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "label": "Thumbnail size",
+        "default": 18
+      },
+      {
+        "type": "header",
         "content": "t:settings_schema.global.settings.header__border.content"
       },
       {

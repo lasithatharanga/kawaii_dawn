@@ -474,6 +474,43 @@
   color: rgb(var(--color-foreground));
 }
 
+.card__swatches {
+  --swatch-input--size: var(--card-swatch-size, 1.8rem);
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.card__swatch-item {
+  line-height: 0;
+}
+
+.card__swatch-link {
+  border-radius: 50%;
+  display: inline-flex;
+  height: var(--card-swatch-size, 1.8rem);
+  overflow: hidden;
+  width: var(--card-swatch-size, 1.8rem);
+}
+
+.card__swatch-image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.card__swatch-link:focus-visible {
+  outline: 0.2rem solid rgb(var(--color-foreground));
+  outline-offset: 0.2rem;
+}
+
+.card__swatch-more {
+  color: rgba(var(--color-foreground), 0.75);
+  margin-left: 0.2rem;
+}
+
 .card-information > .price {
   color: rgb(var(--color-foreground));
 }

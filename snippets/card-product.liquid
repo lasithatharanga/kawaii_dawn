@@ -23,6 +23,7 @@
 {%- unless skip_styles -%}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
   {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
 
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
@@ -38,6 +39,35 @@
     endif
     if ratio == 0 or ratio == null
       assign ratio = 1
+    endif
+
+    assign card_swatch_option = blank
+    assign card_swatch_display_mode = settings.card_swatch_display | default: 'swatch'
+    assign color_named_option = blank
+
+    if card_swatch_display_mode != 'none'
+      for option in card_product.options_with_values
+        assign option_has_swatch = false
+        for value in option.values
+          if value.swatch.image or value.swatch.color
+            assign option_has_swatch = true
+            break
+          endif
+        endfor
+
+        assign option_name_downcase = option.name | downcase
+        if option_name_downcase contains 'color' or option_name_downcase contains 'colour'
+          assign color_named_option = option
+        endif
+
+        if option_has_swatch and card_swatch_option == blank
+          assign card_swatch_option = option
+        endif
+      endfor
+
+      if card_swatch_display_mode == 'variant_image' and color_named_option != blank
+        assign card_swatch_option = color_named_option
+      endif
     endif
   -%}
   <div class="card-wrapper product-card-wrapper underline-links-hover">
@@ -205,6 +235,56 @@
             {%- endif -%}
 
             {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+            {%- if card_swatch_option != blank and card_swatch_option.values.size > 0 -%}
+              <ul
+                class="card__swatches list-unstyled"
+                role="list"
+                aria-label="{{ card_swatch_option.name | escape }}"
+                style="--card-swatch-size: {{ settings.card_swatch_size | default: 18 }}px;"
+              >
+                {%- for value in card_swatch_option.values limit: 5 -%}
+                  {%- liquid
+                    assign card_swatch_variant = blank
+                    if card_swatch_display_mode == 'variant_image'
+                      assign option_position_index = card_swatch_option.position | minus: 1
+                      for variant in card_product.variants
+                        if variant.options[option_position_index] == value and variant.featured_media
+                          assign card_swatch_variant = variant
+                          break
+                        endif
+                      endfor
+                    endif
+                  -%}
+                  <li class="card__swatch-item">
+                    <a
+                      href="{{ value.product_url | default: card_product.url }}"
+                      class="card__swatch-link"
+                      title="{{ value | escape }}"
+                      aria-label="{{ value | escape }}"
+                    >
+                      {%- if card_swatch_display_mode == 'variant_image' and card_swatch_variant != blank -%}
+                        {{
+                          card_swatch_variant.featured_media
+                          | image_url: width: 80
+                          | image_tag:
+                            alt: value,
+                            loading: 'lazy',
+                            class: 'card__swatch-image',
+                            widths: '40, 60, 80'
+                        }}
+                      {%- else -%}
+                        {% render 'swatch', swatch: value.swatch, shape: 'circle' %}
+                      {%- endif -%}
+                    </a>
+                  </li>
+                {%- endfor -%}
+                {%- if card_swatch_option.values.size > 5 -%}
+                  <li class="card__swatch-more caption">
+                    +{{ card_swatch_option.values.size | minus: 5 }}
+                  </li>
+                {%- endif -%}
+              </ul>
+            {%- endif -%}
             {%- if card_product.quantity_price_breaks_configured? -%}
               {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                 {% liquid
