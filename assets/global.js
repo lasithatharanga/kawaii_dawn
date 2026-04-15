@@ -1330,3 +1330,79 @@ class CartPerformance {
     );
   }
 }
+
+class CardSwatchImageHover {
+  constructor() {
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    document.addEventListener('mouseenter', this.onEnter.bind(this), true);
+    document.addEventListener('focusin', this.onFocusIn.bind(this), true);
+    document.addEventListener('mouseleave', this.onLeave.bind(this), true);
+    document.addEventListener('focusout', this.onFocusOut.bind(this), true);
+  }
+
+  onEnter(event) {
+    const swatchLink = event.target.closest('.card__swatch-link--has-image');
+    if (!swatchLink) return;
+    this.applyVariantImage(swatchLink);
+  }
+
+  onFocusIn(event) {
+    const swatchLink = event.target.closest('.card__swatch-link--has-image');
+    if (!swatchLink) return;
+    this.applyVariantImage(swatchLink);
+  }
+
+  onLeave(event) {
+    const swatchLink = event.target.closest('.card__swatch-link--has-image');
+    if (!swatchLink) return;
+
+    // If moving between swatches in same card, next enter will update image.
+    if (event.relatedTarget && swatchLink.closest('.card-wrapper')?.contains(event.relatedTarget)) return;
+    this.restoreCardImage(swatchLink);
+  }
+
+  onFocusOut(event) {
+    const swatchLink = event.target.closest('.card__swatch-link--has-image');
+    if (!swatchLink) return;
+
+    if (event.relatedTarget && swatchLink.closest('.card-wrapper')?.contains(event.relatedTarget)) return;
+    this.restoreCardImage(swatchLink);
+  }
+
+  applyVariantImage(swatchLink) {
+    const card = swatchLink.closest('.card-wrapper');
+    if (!card) return;
+
+    const imageSrc = swatchLink.dataset.variantImageSrc;
+    const imageSrcset = swatchLink.dataset.variantImageSrcset;
+    if (!imageSrc) return;
+
+    const cardImages = card.querySelectorAll('.card__media .media--hover-effect > img');
+    if (!cardImages.length) return;
+
+    cardImages.forEach((image) => {
+      if (!image.dataset.originalSrc) image.dataset.originalSrc = image.getAttribute('src') || '';
+      if (!image.dataset.originalSrcset) image.dataset.originalSrcset = image.getAttribute('srcset') || '';
+      image.setAttribute('src', imageSrc);
+      if (imageSrcset) image.setAttribute('srcset', imageSrcset);
+    });
+  }
+
+  restoreCardImage(swatchLink) {
+    const card = swatchLink.closest('.card-wrapper');
+    if (!card) return;
+
+    const cardImages = card.querySelectorAll('.card__media .media--hover-effect > img');
+    if (!cardImages.length) return;
+
+    cardImages.forEach((image) => {
+      if (image.dataset.originalSrc) image.setAttribute('src', image.dataset.originalSrc);
+      if (image.dataset.originalSrcset) image.setAttribute('srcset', image.dataset.originalSrcset);
+    });
+  }
+}
+
+new CardSwatchImageHover();

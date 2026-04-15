@@ -255,22 +255,32 @@
                   {%- liquid
                     assign option_value_name = value | append: ''
                     assign card_swatch_variant = blank
-                    if card_swatch_display_mode == 'variant_image'
-                      assign option_position_index = card_swatch_option.position | minus: 1
-                      for variant in card_product.variants
-                        if variant.options[option_position_index] == option_value_name and variant.featured_media
-                          assign card_swatch_variant = variant
-                          break
-                        endif
-                      endfor
-                    endif
+                    assign option_position_index = card_swatch_option.position | minus: 1
+                    for variant in card_product.variants
+                      if variant.options[option_position_index] == option_value_name and variant.featured_media
+                        assign card_swatch_variant = variant
+                        break
+                      endif
+                    endfor
                   -%}
                   <li class="card__swatch-item">
                     <a
                       href="{{ value.product_url | default: card_product.url }}"
-                      class="card__swatch-link"
+                      class="card__swatch-link{% if card_swatch_variant != blank %} card__swatch-link--has-image{% endif %}"
                       title="{{ value | escape }}"
                       aria-label="{{ value | escape }}"
+                      {% if card_swatch_variant != blank %}
+                        data-variant-image-src="{{ card_swatch_variant.featured_media | image_url: width: 533 }}"
+                        data-variant-image-srcset="
+                          {%- if card_swatch_variant.featured_media.width >= 165 -%}{{ card_swatch_variant.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                          {%- if card_swatch_variant.featured_media.width >= 360 -%}{{ card_swatch_variant.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                          {%- if card_swatch_variant.featured_media.width >= 533 -%}{{ card_swatch_variant.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                          {%- if card_swatch_variant.featured_media.width >= 720 -%}{{ card_swatch_variant.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                          {%- if card_swatch_variant.featured_media.width >= 940 -%}{{ card_swatch_variant.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                          {%- if card_swatch_variant.featured_media.width >= 1066 -%}{{ card_swatch_variant.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                          {{ card_swatch_variant.featured_media | image_url }} {{ card_swatch_variant.featured_media.width }}w
+                        "
+                      {% endif %}
                     >
                       {%- if card_swatch_display_mode == 'variant_image' and card_swatch_variant != blank -%}
                         {{
