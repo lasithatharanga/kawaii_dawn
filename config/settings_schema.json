@@ -574,6 +574,15 @@
         "default": 18
       },
       {
+        "type": "range",
+        "id": "card_swatch_limit",
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "label": "Max swatches shown",
+        "default": 5
+      },
+      {
         "type": "text",
         "id": "card_variant_option_names",
         "label": "Variant option names for swatches/thumbnails",

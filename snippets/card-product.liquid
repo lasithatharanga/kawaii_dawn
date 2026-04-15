@@ -44,6 +44,7 @@
     assign card_swatch_option = blank
     assign card_swatch_display_mode = settings.card_swatch_display | default: 'swatch'
     assign color_named_option = blank
+    assign card_swatch_limit = settings.card_swatch_limit | default: 5 | plus: 0
     assign configured_option_names = settings.card_variant_option_names | default: 'Color,Colour,色,カラー' | downcase
     assign configured_option_names = configured_option_names | split: ','
 
@@ -250,7 +251,7 @@
                 aria-label="{{ card_swatch_option.name | escape }}"
                 style="--card-swatch-size: {{ settings.card_swatch_size | default: 18 }}px;"
               >
-                {%- for value in card_swatch_option.values limit: 5 -%}
+                {%- for value in card_swatch_option.values limit: card_swatch_limit -%}
                   {%- liquid
                     assign option_value_name = value | append: ''
                     assign card_swatch_variant = blank
@@ -287,9 +288,9 @@
                     </a>
                   </li>
                 {%- endfor -%}
-                {%- if card_swatch_option.values.size > 5 -%}
+                {%- if card_swatch_option.values.size > card_swatch_limit -%}
                   <li class="card__swatch-more caption">
-                    +{{ card_swatch_option.values.size | minus: 5 }}
+                    +{{ card_swatch_option.values.size | minus: card_swatch_limit }}
                   </li>
                 {%- endif -%}
               </ul>
