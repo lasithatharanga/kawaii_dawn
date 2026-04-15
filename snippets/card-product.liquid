@@ -274,7 +274,7 @@
               >
                 {%- for value in card_swatch_option.values limit: card_swatch_limit -%}
                   {%- liquid
-                    assign option_value_name = value | append: ''
+                    assign option_value_name = value.name | default: value | append: ''
                     assign card_swatch_variant = blank
                     assign card_swatch_variant_for_url = blank
                     assign option_position_index = card_swatch_option.position | minus: 1
@@ -350,7 +350,7 @@
               >
                 {%- for value in card_size_option.values limit: card_size_limit -%}
                   {%- liquid
-                    assign size_option_value_name = value | append: ''
+                    assign size_option_value_name = value.name | default: value | append: ''
                     assign card_size_variant = blank
                     assign size_option_position_index = card_size_option.position | minus: 1
                     for variant in card_product.variants
@@ -360,7 +360,7 @@
                       endif
                     endfor
 
-                    assign card_size_url = card_product.url
+                    assign card_size_url = value.product_url | default: card_product.url
                     if card_size_variant != blank
                       if card_size_url contains '?'
                         assign card_size_url = card_size_url | append: '&variant=' | append: card_size_variant.id

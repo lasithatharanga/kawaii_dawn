@@ -475,7 +475,10 @@
   display: inline-flex;
   height: var(--card-swatch-size, 1.8rem);
   overflow: hidden;
+  position: relative;
+  text-decoration: none;
   width: var(--card-swatch-size, 1.8rem);
+  z-index: 2;
 }
 
 .card__swatch-image {
@@ -506,6 +509,7 @@
   align-items: center;
   border: 0.1rem solid rgba(var(--color-foreground), 0.25);
   border-radius: 0.2rem;
+  color: inherit;
   display: inline-flex;
   font-size: 1.1rem;
   height: var(--card-size-chip-size, 2.8rem);
@@ -513,6 +517,9 @@
   line-height: 1;
   min-width: var(--card-size-chip-size, 2.8rem);
   padding: 0 0.6rem;
+  position: relative;
+  text-decoration: none;
+  z-index: 2;
 }
 
 .card__size-more {
