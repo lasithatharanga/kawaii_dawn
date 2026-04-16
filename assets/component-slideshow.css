@@ -97,6 +97,15 @@ slideshow-component .slideshow.banner {
   pointer-events: none;
 }
 
+.slideshow__text-wrapper--click-through {
+  pointer-events: none;
+}
+
+.slideshow__text-wrapper--click-through .banner__buttons,
+.slideshow__text-wrapper--click-through .banner__buttons * {
+  pointer-events: auto;
+}
+
 @media screen and (min-width: 750px) {
   .slideshow__text-wrapper.banner__content {
     height: 100%;

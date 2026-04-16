@@ -539,7 +539,7 @@
   margin-top: 0.4rem;
 }
 
-@media screen and (max-width: 989px) and (prefers-reduced-motion: no-preference) {
+@media screen and (prefers-reduced-motion: no-preference) {
   .card .media.media--hover-effect>img:first-child:not(:only-child) {
     animation: card-image-primary-mobile 6s ease-in-out infinite;
     transform: translateX(0);

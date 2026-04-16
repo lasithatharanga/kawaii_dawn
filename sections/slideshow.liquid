@@ -112,7 +112,7 @@
         }
       </style>
       <div
-        class="slideshow__slide grid__item grid--1-col slider__slide"
+        class="slideshow__slide grid__item grid--1-col slider__slide{% if block.settings.click_collection != blank or block.settings.link != blank %} slideshow__slide--clickable{% endif %}"
         id="Slide-{{ section.id }}-{{ forloop.index }}"
         {{ block.shopify_attributes }}
         role="group"
@@ -176,7 +176,7 @@
         {%- if slide_image_link != blank -%}
           </a>
         {%- endif -%}
-        <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% unless has_slide_content %} slideshow__text-wrapper--empty{% endunless %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if slide_image_link != blank %} slideshow__text-wrapper--click-through{% endif %}{% unless has_slide_content %} slideshow__text-wrapper--empty{% endunless %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
           <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
             {%- if block.settings.heading != blank -%}
               <h2 class="banner__heading inline-richtext {{ block.settings.heading_size }}">
