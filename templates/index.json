@@ -10,19 +10,39 @@
 {
   "sections": {
     "image_banner": {
-      "type": "image-banner",
+      "type": "slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Kawaiifuku_Pastel_Candy_Pop_Super_Kawaii_Oversized_Harajuku_style_T-shirts.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-3"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1"
+      ],
       "settings": {
-        "image": "shopify://shop_images/Kawaiifuku_Pastel_Candy_Pop_Super_Kawaii_Oversized_Harajuku_style_T-shirts.jpg",
-        "image_overlay_opacity": 0,
-        "image_height": "small",
+        "layout": "full_bleed",
+        "slide_height": "small",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
         "image_behavior": "ambient",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
       }
     },
     "rich_text": {

@@ -120,6 +120,17 @@
         aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
         tabindex="-1"
       >
+        {%- liquid
+          assign slide_image_link = blank
+          if block.settings.click_collection != blank
+            assign slide_image_link = block.settings.click_collection.url
+          elsif block.settings.link != blank
+            assign slide_image_link = block.settings.link
+          endif
+        -%}
+        {%- if slide_image_link != blank -%}
+          <a class="slideshow__media-link" href="{{ slide_image_link }}">
+        {%- endif -%}
         <div class="slideshow__media banner__media media{% if block.settings.image == blank %} placeholder{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}">
           {%- if block.settings.image -%}
             {%- liquid
@@ -158,6 +169,9 @@
             {%- endif -%}
           {%- endif -%}
         </div>
+        {%- if slide_image_link != blank -%}
+          </a>
+        {%- endif -%}
         <div class="slideshow__text-wrapper banner__content banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
           <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient slideshow__text--{{ block.settings.text_alignment }} slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
             {%- if block.settings.heading != blank -%}
@@ -464,6 +478,12 @@
           "type": "url",
           "id": "link",
           "label": "t:sections.slideshow.blocks.slide.settings.link.label"
+        },
+        {
+          "type": "collection",
+          "id": "click_collection",
+          "label": "Banner image click collection",
+          "info": "When selected, clicking the banner image opens this collection."
         },
         {
           "type": "checkbox",
