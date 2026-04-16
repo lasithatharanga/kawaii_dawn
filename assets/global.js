@@ -1375,6 +1375,7 @@ class CardSwatchImageHover {
   applyVariantImage(swatchLink) {
     const card = swatchLink.closest('.card-wrapper');
     if (!card) return;
+    card.classList.add('card-wrapper--swatch-active');
 
     const imageSrc = swatchLink.dataset.variantImageSrc;
     const imageSrcset = swatchLink.dataset.variantImageSrcset;
@@ -1394,6 +1395,7 @@ class CardSwatchImageHover {
   restoreCardImage(swatchLink) {
     const card = swatchLink.closest('.card-wrapper');
     if (!card) return;
+    card.classList.remove('card-wrapper--swatch-active');
 
     const cardImages = card.querySelectorAll('.card__media .media--hover-effect > img');
     if (!cardImages.length) return;

@@ -549,6 +549,11 @@
     animation: card-image-secondary-mobile 6s ease-in-out infinite;
     transform: translateX(3%);
   }
+
+  .card-wrapper--swatch-active .media.media--hover-effect>img:first-child:not(:only-child),
+  .card-wrapper--swatch-active .media.media--hover-effect>img+img {
+    animation: none;
+  }
 }
 
 @keyframes card-image-primary-mobile {
