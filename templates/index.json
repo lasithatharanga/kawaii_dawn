@@ -12,6 +12,25 @@
     "image_banner": {
       "type": "slideshow",
       "blocks": {
+        "slide_iNPNNn": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/cover_for_Oishii_collection.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "click_collection": "おいしいコレクション",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
         "slide_1": {
           "type": "slide",
           "settings": {
@@ -22,6 +41,7 @@
             "subheading": "",
             "button_label": "",
             "link": "",
+            "click_collection": "パステルキャンディポップ",
             "button_style_secondary": false,
             "show_text_box": false,
             "box_align": "bottom-center",
@@ -32,6 +52,7 @@
         }
       },
       "block_order": [
+        "slide_iNPNNn",
         "slide_1"
       ],
       "settings": {
