@@ -2056,6 +2056,18 @@
               "label": "Heading",
               "default": "Collapsible row"
             },
+            "use_collection_metafield": {
+              "label": "Use collection metafield for row content",
+              "info": "When enabled, the first collection this product belongs to (except All and Home page) that has the metafield below is used. If none match, row content or a linked page is used as a fallback. The row is hidden when this is on but no collection, row, or page content exists."
+            },
+            "collection_metafield_namespace": {
+              "label": "Collection metafield namespace",
+              "info": "Must match the namespace in Settings > Custom data > Collections (often \"custom\")."
+            },
+            "collection_metafield_key": {
+              "label": "Collection metafield key",
+              "info": "Must match the metafield’s key, for example care_instructions."
+            },
             "content": {
               "label": "Row content"
             },
