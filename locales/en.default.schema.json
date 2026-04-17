@@ -2232,19 +2232,23 @@
             },
             "show_estimated_delivery": {
               "label": "Show estimated delivery date range",
-              "info": "Uses integer metafields on collections (min/max days from today). Add the same definitions under Settings > Custom data > Collections."
+              "info": "Uses collection metafields: either one list of two integers (min and max days from today) or two separate integer fields. Configure under Settings > Custom data > Collections."
             },
             "collection_metafield_namespace": {
               "label": "Collection metafield namespace",
               "info": "Usually \"custom\"."
             },
+            "shipping_days_list_key": {
+              "label": "Single list metafield key (optional)",
+              "info": "If set, use one Collection metafield of type List of integers with two values: minimum days, then maximum days. This overrides the separate min/max keys below."
+            },
             "shipping_min_days_key": {
               "label": "Minimum delivery days metafield key",
-              "info": "Integer metafield on the collection, e.g. shipping_min_days."
+              "info": "Used only when the list key above is empty. Integer metafield, e.g. shipping_min_days."
             },
             "shipping_max_days_key": {
               "label": "Maximum delivery days metafield key",
-              "info": "Integer metafield on the collection, e.g. shipping_max_days."
+              "info": "Used only when the list key above is empty. Integer metafield, e.g. shipping_max_days."
             }
           }
         },

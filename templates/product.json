@@ -85,6 +85,7 @@
             "show_free_shipping": true,
             "show_estimated_delivery": true,
             "collection_metafield_namespace": "custom",
+            "shipping_days_list_key": "",
             "shipping_min_days_key": "shipping_min_days",
             "shipping_max_days_key": "shipping_max_days"
           }

@@ -11,6 +11,7 @@
   if max_key == blank
     assign max_key = 'shipping_max_days'
   endif
+  assign pair_key = block.settings.shipping_days_list_key | strip
 
   assign delivery_range_ready = false
   assign delivery_min_days = 0
@@ -20,25 +21,62 @@
     if collection.handle == 'all' or collection.handle == 'frontpage'
       continue
     endif
-    assign min_mf = collection.metafields[mf_ns][min_key]
-    assign max_mf = collection.metafields[mf_ns][max_key]
-    if min_mf == blank or max_mf == blank
-      continue
+
+    if pair_key != blank
+      assign list_mf = collection.metafields[mf_ns][pair_key]
+      if list_mf == blank or list_mf.value == blank
+        continue
+      endif
+      assign have_min = false
+      assign have_max = false
+      assign dmin = 0
+      assign dmax = 0
+      for n in list_mf.value
+        if have_min == false
+          assign dmin = n | plus: 0
+          assign have_min = true
+        elsif have_max == false
+          assign dmax = n | plus: 0
+          assign have_max = true
+          break
+        endif
+      endfor
+      if have_min == false or have_max == false
+        continue
+      endif
+      if dmin < 0 or dmax < 0
+        continue
+      endif
+      if dmax < dmin
+        assign tmp = dmin
+        assign dmin = dmax
+        assign dmax = tmp
+      endif
+      assign delivery_min_days = dmin
+      assign delivery_max_days = dmax
+      assign delivery_range_ready = true
+      break
+    else
+      assign min_mf = collection.metafields[mf_ns][min_key]
+      assign max_mf = collection.metafields[mf_ns][max_key]
+      if min_mf == blank or max_mf == blank
+        continue
+      endif
+      assign dmin = min_mf.value | plus: 0
+      assign dmax = max_mf.value | plus: 0
+      if dmin < 0 or dmax < 0
+        continue
+      endif
+      if dmax < dmin
+        assign tmp = dmin
+        assign dmin = dmax
+        assign dmax = tmp
+      endif
+      assign delivery_min_days = dmin
+      assign delivery_max_days = dmax
+      assign delivery_range_ready = true
+      break
     endif
-    assign dmin = min_mf.value | plus: 0
-    assign dmax = max_mf.value | plus: 0
-    if dmin < 0 or dmax < 0
-      continue
-    endif
-    if dmax < dmin
-      assign tmp = dmin
-      assign dmin = dmax
-      assign dmax = tmp
-    endif
-    assign delivery_min_days = dmin
-    assign delivery_max_days = dmax
-    assign delivery_range_ready = true
-    break
   endfor
 
   assign has_delivery_range = delivery_range_ready
