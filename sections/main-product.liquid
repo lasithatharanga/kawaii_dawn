@@ -266,6 +266,8 @@
                     </details>
                   </div>
                 {%- endif -%}
+              {%- when 'shipping_collection' -%}
+                {% render 'product-shipping-collection', product: product, block: block, section: section %}
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -1221,6 +1223,52 @@
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.collection_metafield_key.label",
           "default": "care_instructions",
           "info": "t:sections.main-product.blocks.collapsible_tab.settings.collection_metafield_key.info"
+        }
+      ]
+    },
+    {
+      "type": "shipping_collection",
+      "name": "t:sections.main-product.blocks.shipping_collection.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "t:sections.main-product.blocks.shipping_collection.settings.heading.default",
+          "label": "t:sections.main-product.blocks.shipping_collection.settings.heading.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_free_shipping",
+          "default": true,
+          "label": "t:sections.main-product.blocks.shipping_collection.settings.show_free_shipping.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_estimated_delivery",
+          "default": true,
+          "label": "t:sections.main-product.blocks.shipping_collection.settings.show_estimated_delivery.label",
+          "info": "t:sections.main-product.blocks.shipping_collection.settings.show_estimated_delivery.info"
+        },
+        {
+          "type": "text",
+          "id": "collection_metafield_namespace",
+          "label": "t:sections.main-product.blocks.shipping_collection.settings.collection_metafield_namespace.label",
+          "default": "custom",
+          "info": "t:sections.main-product.blocks.shipping_collection.settings.collection_metafield_namespace.info"
+        },
+        {
+          "type": "text",
+          "id": "shipping_min_days_key",
+          "label": "t:sections.main-product.blocks.shipping_collection.settings.shipping_min_days_key.label",
+          "default": "shipping_min_days",
+          "info": "t:sections.main-product.blocks.shipping_collection.settings.shipping_min_days_key.info"
+        },
+        {
+          "type": "text",
+          "id": "shipping_max_days_key",
+          "label": "t:sections.main-product.blocks.shipping_collection.settings.shipping_max_days_key.label",
+          "default": "shipping_max_days",
+          "info": "t:sections.main-product.blocks.shipping_collection.settings.shipping_max_days_key.info"
         }
       ]
     },

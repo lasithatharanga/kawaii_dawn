@@ -78,16 +78,15 @@
           }
         },
         "collapsible-row-1": {
-          "type": "collapsible_tab",
+          "type": "shipping_collection",
           "disabled": true,
           "settings": {
             "heading": "Shipping & Returns",
-            "icon": "truck",
-            "content": "",
-            "page": "",
-            "use_collection_metafield": false,
+            "show_free_shipping": true,
+            "show_estimated_delivery": true,
             "collection_metafield_namespace": "custom",
-            "collection_metafield_key": "care_instructions"
+            "shipping_min_days_key": "shipping_min_days",
+            "shipping_max_days_key": "shipping_max_days"
           }
         },
         "collapsible-row-2": {

@@ -159,6 +159,8 @@
       "nested_label": "{{ parent_title }}向けの{{ title }}",
       "view_full_details": "詳細を表示する",
       "shipping_policy_html": "<a href=\"{{ link }}\">配送料</a>はチェックアウト時に計算されます。",
+      "shipping_free": "送料無料",
+      "shipping_estimated_delivery_html": "お届け目安: <span class=\"nowrap\">{{ date_min }}</span>〜<span class=\"nowrap\">{{ date_max }}</span>",
       "choose_options": "オプションを選択",
       "choose_product_options": "{{ product_name }}のオプションを選択する",
       "value_unavailable": "{{ option_value }}は利用できません",

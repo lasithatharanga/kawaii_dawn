@@ -179,7 +179,9 @@
       "taxes_included": "Taxes included.",
       "duties_included": "Duties included.",
       "duties_and_taxes_included": "Duties and taxes included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "shipping_free": "Free shipping",
+      "shipping_estimated_delivery_html": "Estimated delivery: <span class=\"nowrap\">{{ date_min }}</span> – <span class=\"nowrap\">{{ date_max }}</span>"
     },
     "modal": {
       "label": "Media gallery"

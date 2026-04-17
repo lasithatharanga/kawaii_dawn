@@ -2220,6 +2220,34 @@
             }
           }
         },
+        "shipping_collection": {
+          "name": "Shipping (collection metafields)",
+          "settings": {
+            "heading": {
+              "label": "Heading",
+              "default": "Shipping & Returns"
+            },
+            "show_free_shipping": {
+              "label": "Show free shipping line"
+            },
+            "show_estimated_delivery": {
+              "label": "Show estimated delivery date range",
+              "info": "Uses integer metafields on collections (min/max days from today). Add the same definitions under Settings > Custom data > Collections."
+            },
+            "collection_metafield_namespace": {
+              "label": "Collection metafield namespace",
+              "info": "Usually \"custom\"."
+            },
+            "shipping_min_days_key": {
+              "label": "Minimum delivery days metafield key",
+              "info": "Integer metafield on the collection, e.g. shipping_min_days."
+            },
+            "shipping_max_days_key": {
+              "label": "Maximum delivery days metafield key",
+              "info": "Integer metafield on the collection, e.g. shipping_max_days."
+            }
+          }
+        },
         "popup": {
           "name": "Pop-up",
           "settings": {

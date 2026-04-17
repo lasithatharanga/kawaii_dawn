@@ -1,0 +1,101 @@
+{%- liquid
+  assign mf_ns = block.settings.collection_metafield_namespace | strip
+  if mf_ns == blank
+    assign mf_ns = 'custom'
+  endif
+  assign min_key = block.settings.shipping_min_days_key | strip
+  if min_key == blank
+    assign min_key = 'shipping_min_days'
+  endif
+  assign max_key = block.settings.shipping_max_days_key | strip
+  if max_key == blank
+    assign max_key = 'shipping_max_days'
+  endif
+
+  assign delivery_range_ready = false
+  assign delivery_min_days = 0
+  assign delivery_max_days = 0
+
+  for collection in product.collections
+    if collection.handle == 'all' or collection.handle == 'frontpage'
+      continue
+    endif
+    assign min_mf = collection.metafields[mf_ns][min_key]
+    assign max_mf = collection.metafields[mf_ns][max_key]
+    if min_mf == blank or max_mf == blank
+      continue
+    endif
+    assign dmin = min_mf.value | plus: 0
+    assign dmax = max_mf.value | plus: 0
+    if dmin < 0 or dmax < 0
+      continue
+    endif
+    if dmax < dmin
+      assign tmp = dmin
+      assign dmin = dmax
+      assign dmax = tmp
+    endif
+    assign delivery_min_days = dmin
+    assign delivery_max_days = dmax
+    assign delivery_range_ready = true
+    break
+  endfor
+
+  assign has_delivery_range = delivery_range_ready
+
+  assign show_block = false
+  if block.settings.show_free_shipping
+    assign show_block = true
+  endif
+  if block.settings.show_estimated_delivery and has_delivery_range
+    assign show_block = true
+  endif
+-%}
+{%- if show_block -%}
+  {%- liquid
+    assign date_min_str = ''
+    assign date_max_str = ''
+    if has_delivery_range
+      assign now_epoch = 'now' | date: '%s' | plus: 0
+      assign min_epoch = delivery_min_days | times: 86400 | plus: now_epoch
+      assign max_epoch = delivery_max_days | times: 86400 | plus: now_epoch
+      assign lang_source = request.locale.iso_code
+      if localization.language.iso_code != blank
+        assign lang_source = localization.language.iso_code
+      endif
+      assign locale_root = lang_source | split: '-' | first | downcase
+      assign date_fmt = '%b %d, %Y'
+      if locale_root == 'ja'
+        assign date_fmt = '%Y年%m月%d日'
+      endif
+      assign date_min_str = min_epoch | date: date_fmt
+      assign date_max_str = max_epoch | date: date_fmt
+    endif
+  -%}
+  <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+    <details id="Details-{{ block.id }}-{{ section.id }}">
+      <summary>
+        <div class="summary__title">
+          {% render 'icon-accordion', icon: 'truck' %}
+          <h2 class="h4 accordion__title inline-richtext">
+            {{ block.settings.heading | escape }}
+          </h2>
+        </div>
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </summary>
+      <div class="accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+        {%- if block.settings.show_free_shipping -%}
+          <p class="product-shipping-collection__line">{{ 'products.product.shipping_free' | t }}</p>
+        {%- endif -%}
+        {%- if block.settings.show_estimated_delivery and has_delivery_range -%}
+          <p class="product-shipping-collection__line">
+            {{-
+              'products.product.shipping_estimated_delivery_html'
+              | t: date_min: date_min_str, date_max: date_max_str
+            -}}
+          </p>
+        {%- endif -%}
+      </div>
+    </details>
+  </div>
+{%- endif -%}
