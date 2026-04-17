@@ -71,7 +71,10 @@
             "heading": "Materials",
             "icon": "leather",
             "content": "",
-            "page": ""
+            "page": "",
+            "use_collection_metafield": false,
+            "collection_metafield_namespace": "custom",
+            "collection_metafield_key": "care_instructions"
           }
         },
         "collapsible-row-1": {
@@ -81,7 +84,10 @@
             "heading": "Shipping & Returns",
             "icon": "truck",
             "content": "",
-            "page": ""
+            "page": "",
+            "use_collection_metafield": false,
+            "collection_metafield_namespace": "custom",
+            "collection_metafield_key": "care_instructions"
           }
         },
         "collapsible-row-2": {
@@ -91,17 +97,22 @@
             "heading": "Dimensions",
             "icon": "ruler",
             "content": "",
-            "page": ""
+            "page": "",
+            "use_collection_metafield": false,
+            "collection_metafield_namespace": "custom",
+            "collection_metafield_key": "care_instructions"
           }
         },
         "collapsible-row-3": {
           "type": "collapsible_tab",
-          "disabled": true,
           "settings": {
             "heading": "Care Instructions",
             "icon": "heart",
             "content": "",
-            "page": ""
+            "page": "",
+            "use_collection_metafield": false,
+            "collection_metafield_namespace": "custom",
+            "collection_metafield_key": "care_instructions"
           }
         },
         "share": {
@@ -232,6 +243,8 @@
         "heading": "",
         "heading_size": "h2",
         "products_to_show": 4,
+        "enable_fallback_products": true,
+        "fallback_collection": "",
         "columns_desktop": 4,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
