@@ -2234,6 +2234,10 @@
               "label": "Show estimated delivery date range",
               "info": "Uses collection metafields: either one list of two integers (min and max days from today) or two separate integer fields. Configure under Settings > Custom data > Collections."
             },
+            "open_by_default": {
+              "label": "Open by default",
+              "info": "When enabled, this row starts expanded instead of collapsed."
+            },
             "collection_metafield_namespace": {
               "label": "Collection metafield namespace",
               "info": "Usually \"custom\"."

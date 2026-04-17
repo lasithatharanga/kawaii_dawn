@@ -111,7 +111,12 @@
     endif
   -%}
   <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
-    <details id="Details-{{ block.id }}-{{ section.id }}">
+    <details
+      id="Details-{{ block.id }}-{{ section.id }}"
+      {% if block.settings.open_by_default %}
+        open
+      {% endif %}
+    >
       <summary>
         <div class="summary__title">
           {% render 'icon-accordion', icon: 'truck' %}
