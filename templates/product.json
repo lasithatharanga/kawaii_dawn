@@ -80,7 +80,7 @@
         "collapsible-row-1": {
           "type": "shipping_collection",
           "settings": {
-            "heading": "Shipping & Returns",
+            "heading": "Shipping",
             "show_free_shipping": true,
             "show_estimated_delivery": true,
             "open_by_default": true,
