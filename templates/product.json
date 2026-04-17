@@ -110,7 +110,7 @@
             "icon": "heart",
             "content": "",
             "page": "",
-            "use_collection_metafield": false,
+            "use_collection_metafield": true,
             "collection_metafield_namespace": "custom",
             "collection_metafield_key": "care_instructions"
           }
