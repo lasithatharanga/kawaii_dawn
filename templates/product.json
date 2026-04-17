@@ -79,11 +79,11 @@
         },
         "collapsible-row-1": {
           "type": "shipping_collection",
-          "disabled": true,
           "settings": {
             "heading": "Shipping & Returns",
             "show_free_shipping": true,
             "show_estimated_delivery": true,
+            "open_by_default": true,
             "collection_metafield_namespace": "custom",
             "shipping_days_list_key": "",
             "shipping_min_days_key": "shipping_min_days",
