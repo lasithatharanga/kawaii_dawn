@@ -130,20 +130,20 @@
         "collection-0": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "おいしいコレクション"
           }
         },
         "product": {
           "type": "product",
           "settings": {
-            "product": "",
+            "product": "ロケット-キャット-宇宙飛行士-ビッグシルエット-tシャツ-ユニセックス-ストリートウェア",
             "second_image": false
           }
         },
         "collection-1": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "パステルキャンディポップ"
           }
         }
       },
@@ -153,7 +153,7 @@
         "collection-1"
       ],
       "settings": {
-        "heading": "Multimedia collage",
+        "heading": "Available Now",
         "heading_size": "h2",
         "desktop_layout": "left",
         "mobile_layout": "collage",
