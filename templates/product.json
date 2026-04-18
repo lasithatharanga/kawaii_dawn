@@ -60,6 +60,12 @@
             "show_gift_card_recipient": true
           }
         },
+        "custom_liquid_UPBPjP": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<img src=\"YOUR-BANNER-IMAGE-URL.jpg\" alt=\"Kawaii Discount\" style=\"max-width: 100%; border-radius: 15px;\">"
+          }
+        },
         "description": {
           "type": "description",
           "settings": {}
@@ -131,6 +137,7 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
+        "custom_liquid_UPBPjP",
         "description",
         "collapsible-row-0",
         "collapsible-row-1",
