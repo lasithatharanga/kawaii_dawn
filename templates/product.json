@@ -60,12 +60,6 @@
             "show_gift_card_recipient": true
           }
         },
-        "custom_liquid_UPBPjP": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<img src=\"YOUR-BANNER-IMAGE-URL.jpg\" alt=\"Kawaii Discount\" style=\"max-width: 100%; border-radius: 15px;\">"
-          }
-        },
         "description": {
           "type": "description",
           "settings": {}
@@ -137,7 +131,6 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "custom_liquid_UPBPjP",
         "description",
         "collapsible-row-0",
         "collapsible-row-1",
@@ -263,12 +256,30 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "image_banner_ghrYxG": {
+      "type": "image-banner",
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/Buy_2_or_more_and_get_10_off.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
     }
   },
   "order": [
     "main",
     "image-with-text",
     "multicolumn",
-    "related-products"
+    "related-products",
+    "image_banner_ghrYxG"
   ]
 }
