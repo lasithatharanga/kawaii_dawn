@@ -20,10 +20,26 @@
             "text": "Welcome to our store",
             "link": ""
           }
+        },
+        "announcement_fz9Bgn": {
+          "type": "announcement",
+          "settings": {
+            "text": "Buy 2 or more & get 10% OFF! ✨ Always Free Shipping 💖",
+            "link": ""
+          }
+        },
+        "announcement_JHrHTc": {
+          "type": "announcement",
+          "settings": {
+            "text": "Buy 2 or more & get 10% OFF! ✨ Always Free Shipping 💖",
+            "link": ""
+          }
         }
       },
       "block_order": [
-        "announcement-bar-0"
+        "announcement-bar-0",
+        "announcement_fz9Bgn",
+        "announcement_JHrHTc"
       ],
       "settings": {
         "auto_rotate": false,
