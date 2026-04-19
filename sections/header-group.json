@@ -42,9 +42,9 @@
         "announcement_JHrHTc"
       ],
       "settings": {
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "color_scheme": "",
+        "auto_rotate": true,
+        "change_slides_speed": 3,
+        "color_scheme": "scheme-4",
         "show_line_separator": true,
         "show_social": false,
         "enable_country_selector": false,
