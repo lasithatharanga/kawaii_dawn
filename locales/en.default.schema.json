@@ -3088,6 +3088,10 @@
             "label": "Large"
           }
         },
+        "match_image_height": {
+          "label": "Match height to image",
+          "info": "Banner height follows the first slide’s image aspect ratio so the image stays fully visible as the screen width changes. Best for a single full-width hero. With several slides, every slide uses this same height (the first image’s ratio)."
+        },
         "slider_visual": {
           "label": "Pagination",
           "options__1": {
