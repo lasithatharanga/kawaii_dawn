@@ -97,3 +97,18 @@
 .collection__view-all a:not(.link) {
   margin-top: 1rem;
 }
+
+@media screen and (min-width: 990px) and (prefers-reduced-motion: no-preference) {
+  .template-collection .card .media.media--hover-effect > img:first-child:not(:only-child) {
+    animation: card-image-primary-mobile 6s ease-in-out infinite;
+  }
+
+  .template-collection .card .media.media--hover-effect > img + img {
+    animation: card-image-secondary-mobile 6s ease-in-out infinite;
+  }
+
+  .template-collection .card-wrapper--swatch-active .media.media--hover-effect > img:first-child:not(:only-child),
+  .template-collection .card-wrapper--swatch-active .media.media--hover-effect > img + img {
+    animation: none;
+  }
+}
