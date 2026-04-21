@@ -11,6 +11,36 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "1776744241e22a98b1": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_5be8d62_AQrFtr": {
+          "type": "ai_gen_block_5be8d62",
+          "settings": {
+            "facebook_url": "https://www.facebook.com/people/Kawaiifukucom/61566487721132/",
+            "instagram_url": "https://www.instagram.com/kawaiifuku_jp",
+            "alignment": "center",
+            "desktop_width_percent": 100,
+            "icon_spacing": 16,
+            "padding_vertical": 20,
+            "padding_horizontal": 20,
+            "icon_size": 48,
+            "icon_border_radius": 24,
+            "icon_background_color": "#121212",
+            "icon_hover_background_color": "#334fb4",
+            "icon_color": "#ffffff",
+            "icon_hover_color": "#ffffff",
+            "background_color": "#f3f3f3",
+            "border_radius": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_5be8d62_AQrFtr"
+      ],
+      "settings": {}
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -60,6 +90,7 @@
     }
   },
   "order": [
+    "1776744241e22a98b1",
     "footer"
   ]
 }
