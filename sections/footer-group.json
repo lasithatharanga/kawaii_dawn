@@ -13,32 +13,6 @@
   "sections": {
     "1776744241e22a98b1": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_5be8d62_AQrFtr": {
-          "type": "ai_gen_block_5be8d62",
-          "settings": {
-            "facebook_url": "https://www.facebook.com/people/Kawaiifukucom/61566487721132/",
-            "instagram_url": "https://www.instagram.com/kawaiifuku_jp",
-            "alignment": "center",
-            "desktop_width_percent": 100,
-            "icon_spacing": 16,
-            "padding_vertical": 20,
-            "padding_horizontal": 20,
-            "icon_size": 48,
-            "icon_border_radius": 24,
-            "icon_background_color": "#121212",
-            "icon_hover_background_color": "#334fb4",
-            "icon_color": "#ffffff",
-            "icon_hover_color": "#ffffff",
-            "background_color": "#f3f3f3",
-            "border_radius": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_5be8d62_AQrFtr"
-      ],
       "settings": {}
     },
     "footer": {
@@ -46,6 +20,7 @@
       "blocks": {
         "footer-0": {
           "type": "link_list",
+          "disabled": true,
           "settings": {
             "heading": "Quick links",
             "menu": "footer"
@@ -58,20 +33,11 @@
             "heading": "Info",
             "menu": "footer"
           }
-        },
-        "footer-2": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
-          }
         }
       },
       "block_order": [
         "footer-0",
-        "footer-1",
-        "footer-2"
+        "footer-1"
       ],
       "settings": {
         "color_scheme": "scheme-1",
@@ -82,7 +48,7 @@
         "enable_country_selector": false,
         "enable_language_selector": false,
         "payment_enable": true,
-        "show_policy": false,
+        "show_policy": true,
         "margin_top": 48,
         "padding_top": 36,
         "padding_bottom": 36
