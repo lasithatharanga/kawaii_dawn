@@ -12,6 +12,25 @@
     "image_banner": {
       "type": "slideshow",
       "blocks": {
+        "slide_hrUh4i": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Generated_Image_April_27_2026_-_2_15PM_jpg.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "click_collection": "natsukashii-moments",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "scheme-1"
+          }
+        },
         "slide_iNPNNn": {
           "type": "slide",
           "settings": {
@@ -71,6 +90,7 @@
         }
       },
       "block_order": [
+        "slide_hrUh4i",
         "slide_iNPNNn",
         "slide_1",
         "slide_AtQdCJ"
